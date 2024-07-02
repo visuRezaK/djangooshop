@@ -29,8 +29,8 @@ SECRET_KEY = 'django-insecure-11&-!%f)$9&b_!l(@1kud8$^0=3uln%2%h*uhhss@7q(1n2804
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['monorail.proxy.rlwy.net:30940','https://monorail.proxy.rlwy.net:30940']
-CSRF_TRUSTED_ORIGINS = ['monorail.proxy.rlwy.net:30940','https://monorail.proxy.rlwy.net:30940']
+ALLOWED_HOSTS = ['djangooshop-production.up.railway.app', 'https://djangooshop-production.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['djangooshop-production.up.railway.app', 'https://djangooshop-production.up.railway.app']
 
 
 # Application definition
