@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-11&-!%f)$9&b_!l(@1kud8$^0=3uln%2%h*uhhss@7q(1n2804
 DEBUG = True
 
 ALLOWED_HOSTS = ['djangooshop-production.up.railway.app', 'https://djangooshop-production.up.railway.app']
-CSRF_TRUSTED_ORIGINS = ['djangooshop-production.up.railway.app', 'https://djangooshop-production.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://djangooshop-production.up.railway.app']
 
 
 # Application definition
