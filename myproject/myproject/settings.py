@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv()
 
 # password DB
-# DB_PASSWORD_YO = os.environ['DB_PASSWORD_YO']
+DB_PASSWORD_YO = os.environ['DB_PASSWORD-YOU']
 
 
 # Quick-start development settings - unsuitable for production
@@ -33,7 +33,7 @@ SECRET_KEY = 'django-insecure-11&-!%f)$9&b_!l(@1kud8$^0=3uln%2%h*uhhss@7q(1n2804
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-#ALLOWED_HOSTS = ['djangooshop-production-53c5.up.railway.app', 'https://djangooshop-production-53c5.up.railway.app']
+ALLOWED_HOSTS = ['djangooshop-production-53c5.up.railway.app', 'https://djangooshop-production-53c5.up.railway.app']
 ALLOWED_HOST = [
     '127.0.0.1',
     'localhost',
@@ -94,7 +94,7 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/5.0/ref/settings/#databases
+#  https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
     'default': {
@@ -112,7 +112,7 @@ DATABASES = {
 
 
 # Password validation
-# https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
+#  https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -145,22 +145,24 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = '/static/'
-#STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
-STATICFILES_URLS = ['static/']
+# STATIC_URL = '/static/'
+STATIC_URL = 'static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
+# STATICFILES_DIRS = ['static/']
+# STATICFILES_URLS = ['static/']
 
 # White noise static stuff
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-#STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
-# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
+#  https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
