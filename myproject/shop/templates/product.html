@@ -9,8 +9,25 @@
     <div class="card mb-3" >
         <div class="row g-0">
           <div class="col-md-4">
-            <img src="{{ product.picture.url }}" class="img-fluid rounded-start" alt="...">
+            <!--<img src="{{ product.picture.url }}" class="img-fluid rounded-start" alt="...">-->
+            <img id="mainProductImage" class="card-img-top mb-3" src="{{ product.picture.url }}" alt="Main image" />
+
+            
+            <!-- Additional images toolbar -->
+            <div class="container mt-3">
+              <div class="row flex-row flex-nowrap overflow-auto">
+                  {% for image in product.images.all %}
+                      <div class="col-auto">
+                          <img class="img-thumbnail" src="{{ image.image.url }}" alt="Additional image" style="width: 100px; height: 100px; object-fit: cover; cursor: pointer;" onclick="changeImage('{{ image.image.url }}')" />
+                      </div>
+                  {% endfor %}
+              </div>
           </div>
+
+          </div>
+          
+        </div>
+        
           <div class="col-md-8">
             <div class="card-body">
               <h5 class="card-title">{{ product.name }}</h5>
@@ -66,6 +83,12 @@ $(document).on('click', '#add-cart', function(e){
        }
     });
 })
+</script>
+<!-- JavaScript to change the main image -->
+<script type="text/javascript">
+  function changeImage(newSrc) {
+      document.getElementById("mainProductImage").src = newSrc;
+  }
 </script>
 
 {% endblock %}

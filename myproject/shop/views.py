@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Product, Category, Profile
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
@@ -6,6 +6,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from .forms import SignUpForm, UpdateUserForm, ChangePasswordForm, UserInfoFom
+#from django.db import transaction
+#from django.http import HttpResponseBadRequest
 
 from payment.forms import ShippingForm
 from payment.models import ShippingAddress
@@ -158,6 +160,7 @@ def update_user(request):
 
 def product(request,pk):
     product = Product.objects.get(id=pk)
+   # images = product.images.all()
     return render(request, 'product.html', {'product': product})
 
 def search(request):
@@ -192,3 +195,17 @@ def category(request,cat):
         messages.error(request, ('There is no category!'))
         return redirect("home")
        
+
+
+
+def product_image(request, product_id):
+    product = get_object_or_404(Product, pk=product_id)
+    images = product.images.all()  #Retrieve all images for this product
+
+    return render(request, 'product.html', {'product': product, 'images': images})
+
+def invoice_success(request):
+    return render(request, 'invoice_success.html')
+
+def create_invoice():
+    pass

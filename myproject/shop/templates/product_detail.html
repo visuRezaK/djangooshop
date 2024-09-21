@@ -1,0 +1,29 @@
+<h1>{{ product.name }}</h1>
+<p>{{ product.description }}</p>
+<p>Price: ${{ product.price }}</p>
+
+<div class="product-gallery">
+    {% for image in product.images.all %}
+        <img src="{{ image.image.url }}" alt="{{ image.alt_text }}" class="product-image">
+    {% endfor %}
+</div>
+
+<style>
+.product-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.product-image {
+    max-width: 200px;
+    max-height: 200px;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.product-image:hover {
+    transform: scale(1.05);
+    transition: transform 0.2s;
+}
+</style>

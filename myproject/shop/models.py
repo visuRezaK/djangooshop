@@ -3,6 +3,7 @@ from django.core.validators import MinValueValidator,MaxValueValidator
 import datetime
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
+#from .models import Product, Customer
 
 #create customer profile
 class Profile(models.Model):
@@ -59,6 +60,8 @@ class Product(models.Model):
 
     is_sale = models.BooleanField(default=False)
     sale_price = models.DecimalField(default=0, decimal_places=2, max_digits=5)
+    
+    stock = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return self.name
@@ -74,3 +77,36 @@ class Order(models.Model):
 
     def __str__(self):
         return self.product   
+
+# class Inventory(models.Model):
+#     product = models.OneToOneField('Product', on_delete=models.CASCADE)
+#     quantity = models.PositiveIntegerField(default=0)
+
+#     def __str__(self):
+#         return f"{self.product.name} - {self.quantity} item in stock"
+    
+class Invoice(models.Model):
+    customer = models.ForeignKey('Customer', on_delete=models.CASCADE)
+    products = models.ManyToManyField('Product', through='InvoiceProduct')
+    total_amount = models.DecimalField(max_digits=10, decimal_places=2)
+    date = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Invoice {self.id} for {self.customer.first_name} {self.customer.last_name}"
+
+class InvoiceProduct(models.Model):
+    invoice = models.ForeignKey(Invoice, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=1)
+    price = models.DecimalField(max_digits=8, decimal_places=2)
+
+    def __str__(self):
+        return f"{self.product.name} - {self.quantity} pcs"         
+    
+class ProductImage(models.Model):
+    product = models.ForeignKey(Product, related_name='images', on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='product_images/')
+    #alt_text = models.CharField(max_length=255, blank=True)
+
+    def __str__(self):
+        return f"Image for {self.product.name}"

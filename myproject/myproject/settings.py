@@ -20,6 +20,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Load our environment variables
 load_dotenv()
 
+# password DB
+# DB_PASSWORD_YO = os.environ['DB_PASSWORD_YO']
+
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
@@ -29,7 +33,12 @@ SECRET_KEY = 'django-insecure-11&-!%f)$9&b_!l(@1kud8$^0=3uln%2%h*uhhss@7q(1n2804
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['djangooshop-production-53c5.up.railway.app', 'https://djangooshop-production-53c5.up.railway.app']
+#ALLOWED_HOSTS = ['djangooshop-production-53c5.up.railway.app', 'https://djangooshop-production-53c5.up.railway.app']
+ALLOWED_HOST = [
+    '127.0.0.1',
+    'localhost',
+]
+
 CSRF_TRUSTED_ORIGINS = ['https://djangooshop-production-53c5.up.railway.app']
 
 
@@ -47,6 +56,7 @@ INSTALLED_APPS = [
     'cart',
     'payment',
     'whitenoise.runserver_nostatic',
+    'paypal.standard.ipn',
 ]
 
 MIDDLEWARE = [
@@ -136,14 +146,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
-#STATICFILES_URLS = ['static/']
+#STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
+STATICFILES_URLS = ['static/']
 
 # White noise static stuff
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-#STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+#STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
 MEDIA_URL = 'media/'
@@ -153,3 +163,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Add paypal setting 
+# Set sandbox to true
+PAYPAL_TEST = True
+
+PAYPAL_RECEIVER_EMAIL = 'businesskatan@gmail.com' # Business Sandbox account   

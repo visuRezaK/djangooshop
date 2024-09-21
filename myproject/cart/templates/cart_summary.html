@@ -21,7 +21,7 @@
             <div class="card mb-3" >
                 <div class="row g-0">
                   <div class="col-md-4">
-                    <img src="{{ product.picture.url }}" class="img-fluid rounded-start" alt="...">
+                    <img src="{{ product.picture.url }}" class="img-fluid rounded-start" alt="...">                  
                   </div>
                   <div class="col-md-8">
                     <div class="card-body">
@@ -64,7 +64,7 @@
         {% endfor %}
         <div align="right">
         <h3>Total: ${{ totals | intcomma }}</h3>
-        <a href="{% url 'checkout' %}" class="btn btn-success">Checkout</a>
+        <a href="{% url 'checkout' %}" id="checkout-btn" class="btn btn-success">Checkout</a>
         
         </div>
         <br/><br/><br/>
@@ -75,7 +75,6 @@
         {% endif %}
            
 <br><br><br><br><br><br><br><br><br><br><br>        
- 
 
 <script>
   //.Update.Cart
@@ -133,4 +132,99 @@ $(document).on('click', '.update-cart', function(e){
     });
 });
 </script>
+
+<script>
+//   function checkStock() {
+//   let checkout = document.getElementById("checkout-button");
+//   let cartItems = document.querySelectorAll(".cart-item");
+
+//   // Create an array to store the promises for each stock check
+//   let stockChecks = [];
+
+//   // Loop through each cart item
+//   for (let i = 0; i < cartItems.length; i++) {
+//     let cartItem = cartItems[i];
+//     let productId = cartItem.dataset.productId;
+//     let quantityInput = cartItem.querySelector("input[name='quantity']");
+//     let stockSpan = cartItem.querySelector(".stock");
+
+//     // Get the product stock from the server using AJAX
+//     let stockCheck = fetch("/check_stock/" + productId)
+//       .then((response) => response.json())
+//       .then((data) => {
+//         let stock = data.stock;
+//         let quantity = parseInt(quantityInput.value);
+
+//         // Check if the stock is zero or less than the quantity
+//         if (stock <= 0 || stock < quantity) {
+//           return false; // Stock is insufficient
+//         } else {
+//           return true; // Stock is sufficient
+//         }
+//       })
+//       .catch((error) => {
+//         console.error("Error checking stock:", error);
+//         return false; // Stock check failed
+//       });
+
+//     // Add the stock check promise to the array
+//     stockChecks.push(stockCheck);
+//   }
+
+//   // Wait for all the stock checks to complete
+//   Promise.all(stockChecks).then((results) => {
+//     // Check if any of the stock checks failed
+//     if (results.includes(false)) {
+//       checkout.disabled = true; // Disable the checkout button
+//     } else {
+//       checkout.disabled = false; // Enable the checkout button
+//     }
+//   });
+// }
+</script>
+
+
+
+
+<!-- <script>
+  var cartData = {
+      "products": [
+          {% for product in cart_products %}
+          {
+              "id": {{ product.id }},
+              "name": "{{ product.name|escapejs }}",
+              "price": {{ product.price }},
+              "stock": {{ product.stock }},
+              "quantity": quantities["{{ product.id }}"]
+          }{% if not forloop.last %},
+          {% endif %}
+          {% endfor %}
+      ]
+  };
+
+  function checkStockAndDisableButton() {
+      var disableButton = false;
+
+      cartData.products.forEach(function(product) {
+          if (product.stock < product.quantity) {
+              document.getElementById('status-' + product.id).innerHTML = '<span class="text-danger">Not enough stock</span>';
+              disableButton = true;
+          } else {
+              document.getElementById('status-' + product.id).innerHTML = '<span class="text-success">In stock</span>';
+          }
+      });
+
+      if (disableButton) {
+          document.getElementById('checkout-button').disabled = true;
+      } else {
+          document.getElementById('checkout-button').disabled = false;
+      }
+  }
+
+  window.onload = checkStockAndDisableButton;
+</script>
+<script>
+  var quantities = {{ quantities|safe }};  // Use the 'safe' filter to prevent auto-escaping
+</script> -->
+
 {% endblock %}  

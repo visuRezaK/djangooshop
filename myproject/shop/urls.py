@@ -16,6 +16,8 @@ urlpatterns = [
     path('category/<str:cat>', views.category, name="category"),
     path('category_summary/', views.category_summary, name="category_summary"),
     path('search/', views.search, name="search"),
+    #path('create_invoice/', views.create_invoice, name="create_invoice"),
+    path('invoice_success/', views.invoice_success, name="invoice_success"),
     
 
 ]   
