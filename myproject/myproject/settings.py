@@ -20,6 +20,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Load our environment variables
 load_dotenv()
 
+# Password for localhost
+# DB_PASSWORD_YO = os.environ.get('DB_PASSWORD-YOU')
+
 # password DB
 DB_PASSWORD_YO = os.environ['DB_PASSWORD-YOU']
 
@@ -34,10 +37,10 @@ SECRET_KEY = 'django-insecure-11&-!%f)$9&b_!l(@1kud8$^0=3uln%2%h*uhhss@7q(1n2804
 DEBUG = True
 
 ALLOWED_HOSTS = ['djangooshop-production-53c5.up.railway.app', 'https://djangooshop-production-53c5.up.railway.app']
-ALLOWED_HOST = [
-    '127.0.0.1',
-    'localhost',
-]
+# ALLOWED_HOST = [
+#     '127.0.0.1',
+#     'localhost',
+# ]
 
 CSRF_TRUSTED_ORIGINS = ['https://djangooshop-production-53c5.up.railway.app']
 

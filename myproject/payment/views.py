@@ -303,7 +303,8 @@ def checkout(request):
 def payment_success(request):
     return render(request, "payment/payment_success.html", {})
 
-
+def payment_failed(request):
+    return render(request, "payment/payment_failed.html")
 
 
 
@@ -630,9 +631,7 @@ def payment_success(request):
 
 
 
-def payment_failed(request):
-    # You can customize the context with data if needed
-    return render(request, 'payment_failed.html')
+
 
 # def create_invoice(request):
 #     if request.method == 'POST':
